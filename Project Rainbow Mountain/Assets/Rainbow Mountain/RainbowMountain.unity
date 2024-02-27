@@ -779,16 +779,21 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   recipes:
-  - name: Small Mario 2 sugar 2 coffee
+  - name: Small Mario 2 Shots 2 Sugar
     size: 0
     type: 2
     shots: 2
     sugar: 2
-  - name: Large Cappuccinno 2 Shots 3 Coffee
+  - name: Large Cappuccinno 2 Shots 3 Sugar
     size: 2
     type: 0
     shots: 2
     sugar: 3
+  - name: Medium Latte 1 Shots 2 Sugar
+    size: 1
+    type: 1
+    shots: 1
+    sugar: 2
 --- !u!4 &1883023123
 Transform:
   m_ObjectHideFlags: 0

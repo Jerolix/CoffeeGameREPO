@@ -1,17 +1,26 @@
 using System;
 using System.Collections;
 using System.Collections.Generic;
+using System.Runtime.CompilerServices;
 using UnityEngine;
 
 public class CoffeeMaking : MonoBehaviour
 {
     Drink currentMix = new Drink(); // This list shows what is currently in the mix.
+    [SerializeField] private List<Drink> orders = new List<Drink>();
 
     bool sizeSelected = false;
     bool typeSelected = false;
+    bool fuck = true;
     int sugar = 0;
     int coffee = 0;
+    [SerializeField] private float timeBetweenOrders = 20.0f;
     [SerializeField] private List<Drink> recipes = new List<Drink>();
+
+    private void Start()
+    {
+        StartCoroutine(RunOrder());
+    }
 
     private void Update()
     {
@@ -42,12 +51,40 @@ public class CoffeeMaking : MonoBehaviour
 
         for (int i = 0; i <= recipes.Count-1; i++)
         {
-            if (recipes[i].size == currentMix.size && recipes[i].type == currentMix.type && recipes[i].shots == currentMix.shots && recipes[i].sugar == currentMix.sugar)
+            if (Compare(recipes[i], currentMix))
             {
                 result = recipes[i].name;
             }
         }
 
+        return result;
+    }
+
+    private string CompareOrder()
+    {
+        string result = "invalid";
+
+        for (int i = 0; i <= orders.Count - 1; i++)
+        {
+            if (Compare(orders[i], currentMix))
+            {
+                result = orders[i].name;
+                orders.Remove(orders[i]);
+                return result;
+            }
+        }
+
+        return result;
+    }
+
+    private bool Compare(Drink a, Drink b)
+    {
+        bool result = false;
+
+        if (a.size == b.size && a.type == b.type && a.shots == b.shots && a.sugar == b.sugar)
+        {
+            result = true;
+        }
         return result;
     }
 
@@ -125,7 +162,7 @@ public class CoffeeMaking : MonoBehaviour
 
             string debug = "Order: ";
 
-            debug += CompareDrink();
+            debug += CompareOrder();
 
             Debug.Log(debug);
             currentMix = new Drink();
@@ -135,7 +172,27 @@ public class CoffeeMaking : MonoBehaviour
             typeSelected = false;
         }
     }
+
+    IEnumerator RunOrder()
+    {
+        while(fuck)
+        {
+            Order();
+            yield return new WaitForSeconds(timeBetweenOrders);
+        }
+
+    }
+
+    private void Order()
+    {
+        if (orders.Count < 4)
+        {
+            orders.Add(recipes[UnityEngine.Random.Range(0, recipes.Count)]);
+        }
+    }
 }
+
+#region blah
 [Serializable]
 public class Drink
 {
@@ -160,3 +217,4 @@ public enum type
     Latte,
     Mocha
 }
+#endregion
