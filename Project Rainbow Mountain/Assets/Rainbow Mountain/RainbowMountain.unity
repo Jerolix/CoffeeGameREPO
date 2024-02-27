@@ -778,6 +778,12 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 85f1c0087cbd16f41b4e84c0396c5979, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  recipes:
+  - name: Small Mario 2 sugar 2 coffee
+    size: 0
+    type: 2
+    shots: 2
+    sugar: 2
 --- !u!4 &1883023123
 Transform:
   m_ObjectHideFlags: 0

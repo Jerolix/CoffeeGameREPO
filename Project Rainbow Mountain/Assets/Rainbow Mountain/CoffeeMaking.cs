@@ -1,23 +1,17 @@
+using System;
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 
 public class CoffeeMaking : MonoBehaviour
 {
-    List<int> currentMix = new List<int>(); // This list shows what is currently in the mix.
+    Drink currentMix = new Drink(); // This list shows what is currently in the mix.
 
     bool sizeSelected = false;
     bool typeSelected = false;
     int sugar = 0;
     int coffee = 0;
-
-    //Cappuccinno recipe variations. These will be checked against currentMix.
-    List<int> capSmall1 = new List<int>() { 0, 1, 2 }; // First potion recipe, Mana Potion.
-    List<int> capSmall2 = new List<int>() { 0, 0, 2 }; // Second potion recipe, Health Potion.
-    List<int> capMedium1 = new List<int>() { 1, 1, 1 }; // Third potion recipe, Rage Potion.
-    List<int> capMedium2 = new List<int>() { 1, 1, 2 }; // First potion recipe, Mana Potion.
-    List<int> capLarge1 = new List<int>() { 2, 0, 2 }; // Second potion recipe, Health Potion.
-    List<int> capLarge2 = new List<int>() { 2, 1, 1 }; // Third potion recipe, Rage Potion.
+    [SerializeField] private List<Drink> recipes = new List<Drink>();
 
     private void Update()
     {
@@ -26,50 +20,35 @@ public class CoffeeMaking : MonoBehaviour
 
     void CoffeeMix()
     {
-        if (coffee == 0)
+        if (coffee <= 4)
         {
-            currentMix.Add(6);
+            currentMix.shots = coffee;
         }
-        else if(coffee == 1)
-        {
-            currentMix.Add(7);
-        }
-        else if (coffee == 2)
-        {
-            currentMix.Add(8);
-        }
-        else if (coffee == 3)
-        {
-            currentMix.Add(9);
-        }
-        else if (coffee >= 4)
-        {
-            currentMix.Add(10);
-        }
+        else currentMix.shots = 4;
     }
 
     void SugarMix()
     {
-        if (sugar == 0)
+        if (sugar <= 4)
         {
-            currentMix.Add(11);
+            currentMix.sugar = sugar;
         }
-        else if (sugar == 1)
+        else currentMix.sugar = 4;
+    }
+
+    private string CompareDrink()
+    {
+        string result = "invalid";
+
+        for (int i = 0; i <= recipes.Count-1; i++)
         {
-            currentMix.Add(12);
+            if (recipes[i].size == currentMix.size && recipes[i].type == currentMix.type && recipes[i].shots == currentMix.shots && recipes[i].sugar == currentMix.sugar)
+            {
+                result = recipes[i].name;
+            }
         }
-        else if (sugar == 2)
-        {
-            currentMix.Add(13);
-        }
-        else if (sugar == 3)
-        {
-            currentMix.Add(14);
-        }
-        else if (sugar >= 4)
-        {
-            currentMix.Add(15);
-        }
+
+        return result;
     }
 
     private void MixStation()
@@ -78,21 +57,21 @@ public class CoffeeMaking : MonoBehaviour
         {
             if (Input.GetKeyDown(KeyCode.Q)) //Select Small Cup.
             {
-                currentMix.Add(0);
+                currentMix.size = size.Small;
                 sizeSelected = true;
                 Debug.Log("Small Cup Selected (Q)");
             }
 
             if (Input.GetKeyDown(KeyCode.W)) //Select Medium Cup.
             {
-                currentMix.Add(1);
+                currentMix.size = size.Medium;
                 sizeSelected = true;
                 Debug.Log("Medium Cup Selected (W)");
             }
 
             if (Input.GetKeyDown(KeyCode.E)) //Select Large Cup.
             {
-                currentMix.Add(2);
+                currentMix.size = size.Large;
                 sizeSelected = true;
                 Debug.Log("Large Cup Selected (E)");
             }
@@ -102,21 +81,21 @@ public class CoffeeMaking : MonoBehaviour
         {
             if (Input.GetKeyDown(KeyCode.J)) //Select Cappuccinno Type.
             {
-                currentMix.Add(3);
+                currentMix.type = type.Cappuccino;
                 typeSelected = true;
                 Debug.Log("Cappuccino Selected (J)");
             }
 
             if (Input.GetKeyDown(KeyCode.K)) //Select Latte Type.
             {
-                currentMix.Add(4);
+                currentMix.type = type.Latte;
                 typeSelected = true;
                 Debug.Log("Latte Selected (K)");
             }
 
             if (Input.GetKeyDown(KeyCode.L)) //Select Mocha Type.
             {
-                currentMix.Add(5);
+                currentMix.type = type.Mocha;
                 typeSelected = true;
                 Debug.Log("Mocha Selected (L)");
             }
@@ -143,16 +122,36 @@ public class CoffeeMaking : MonoBehaviour
         if (Input.GetKeyDown(KeyCode.Return))
         {
             CoffeeMix(); SugarMix();
-            currentMix.Sort();
 
             string debug = "Order: ";
 
-            foreach(int value in currentMix)
-            {
-                debug += value + ", ";
-            }
+            debug += CompareDrink();
 
             Debug.Log(debug);
         }
     }
+}
+[Serializable]
+public class Drink
+{
+    public string name;
+    public size size;
+    public type type;
+    [Range(0, 4)]
+    public int shots;
+    [Range(0, 4)]
+    public int sugar;
+}
+public enum size
+{
+    Small,
+    Medium,
+    Large
+}
+
+public enum type
+{
+    Cappuccino,
+    Latte,
+    Mocha
 }
