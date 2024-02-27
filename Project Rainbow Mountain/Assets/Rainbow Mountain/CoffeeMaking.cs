@@ -128,6 +128,11 @@ public class CoffeeMaking : MonoBehaviour
             debug += CompareDrink();
 
             Debug.Log(debug);
+            currentMix = new Drink();
+            coffee = 0;
+            sugar = 0;
+            sizeSelected = false;
+            typeSelected = false;
         }
     }
 }

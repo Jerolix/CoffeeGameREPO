@@ -784,6 +784,11 @@ MonoBehaviour:
     type: 2
     shots: 2
     sugar: 2
+  - name: Large Cappuccinno 2 Shots 3 Coffee
+    size: 2
+    type: 0
+    shots: 2
+    sugar: 3
 --- !u!4 &1883023123
 Transform:
   m_ObjectHideFlags: 0
