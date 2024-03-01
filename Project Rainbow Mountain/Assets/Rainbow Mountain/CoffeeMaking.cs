@@ -3,6 +3,8 @@ using System.Collections;
 using System.Collections.Generic;
 using System.Runtime.CompilerServices;
 using UnityEngine;
+using UnityEngine.UI;
+using TMPro;
 
 public class CoffeeMaking : MonoBehaviour
 {
@@ -11,11 +13,13 @@ public class CoffeeMaking : MonoBehaviour
 
     bool sizeSelected = false;
     bool typeSelected = false;
-    bool fuck = true;
     int sugar = 0;
     int coffee = 0;
+    int ordersRemaining = 20;
     [SerializeField] private float timeBetweenOrders = 20.0f;
     [SerializeField] private List<Drink> recipes = new List<Drink>();
+
+    public ScoreManager scoreManager;
 
     private void Start()
     {
@@ -45,21 +49,6 @@ public class CoffeeMaking : MonoBehaviour
         else currentMix.sugar = 4;
     }
 
-    private string CompareDrink()
-    {
-        string result = "invalid";
-
-        for (int i = 0; i <= recipes.Count-1; i++)
-        {
-            if (Compare(recipes[i], currentMix))
-            {
-                result = recipes[i].name;
-            }
-        }
-
-        return result;
-    }
-
     private string CompareOrder()
     {
         string result = "invalid";
@@ -70,10 +59,10 @@ public class CoffeeMaking : MonoBehaviour
             {
                 result = orders[i].name;
                 orders.Remove(orders[i]);
+                scoreManager.IncreaseScore(1);
                 return result;
             }
         }
-
         return result;
     }
 
@@ -175,19 +164,27 @@ public class CoffeeMaking : MonoBehaviour
 
     IEnumerator RunOrder()
     {
-        while(fuck)
+        while(true)
         {
             Order();
             yield return new WaitForSeconds(timeBetweenOrders);
         }
-
     }
 
     private void Order()
     {
-        if (orders.Count < 4)
+        if (ordersRemaining > 0)
         {
-            orders.Add(recipes[UnityEngine.Random.Range(0, recipes.Count)]);
+            if (orders.Count < 4)
+            {
+                orders.Add(recipes[UnityEngine.Random.Range(0, recipes.Count)]);
+            }
+
+            else if (orders.Count == 4)
+            {
+                scoreManager.DecreaseScore(1);
+            }
+            ordersRemaining--;
         }
     }
 }
