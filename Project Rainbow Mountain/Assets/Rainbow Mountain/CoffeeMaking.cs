@@ -16,6 +16,12 @@ public class CoffeeMaking : MonoBehaviour
     int sugar = 0;
     int coffee = 0;
     int ordersRemaining = 20;
+    public TextMeshProUGUI inputText;
+    string completedOrder;
+    public TextMeshProUGUI orderText1;
+    public TextMeshProUGUI orderText2;
+    public TextMeshProUGUI orderText3;
+    public TextMeshProUGUI orderText4;
     [SerializeField] private float timeBetweenOrders = 20.0f;
     [SerializeField] private List<Drink> recipes = new List<Drink>();
 
@@ -24,11 +30,43 @@ public class CoffeeMaking : MonoBehaviour
     private void Start()
     {
         StartCoroutine(RunOrder());
+        UpdateInputText();
+        UpdateOrder1Text();
+        UpdateOrder2Text();
+        UpdateOrder3Text();
+        UpdateOrder4Text();
+    }
+
+    void UpdateInputText()
+    {
+        inputText.text = completedOrder;
+    }
+
+    void UpdateOrder1Text()
+    {
+        orderText1.text = orders[0].name;
+    }
+    void UpdateOrder2Text()
+    {
+        orderText2.text = orders[1].name;
+    }
+    void UpdateOrder3Text()
+    {
+        orderText3.text = orders[2].name;
+    }
+
+    void UpdateOrder4Text()
+    {
+        orderText4.text = orders[3].name;
     }
 
     private void Update()
     {
-        MixStation();
+        MixStation(null);
+        UpdateOrder1Text();
+        UpdateOrder2Text();
+        UpdateOrder3Text();
+        UpdateOrder4Text();
     }
 
     void CoffeeMix()
@@ -77,25 +115,25 @@ public class CoffeeMaking : MonoBehaviour
         return result;
     }
 
-    private void MixStation()
+    public void MixStation(string buttonType)
     {
         if (sizeSelected == false) //Checks if size has been selected.
         {
-            if (Input.GetKeyDown(KeyCode.Q)) //Select Small Cup.
+            if (Input.GetKeyDown(KeyCode.Q) || buttonType == "Small") //Select Small Cup.
             {
                 currentMix.size = size.Small;
                 sizeSelected = true;
                 Debug.Log("Small Cup Selected (Q)");
             }
 
-            if (Input.GetKeyDown(KeyCode.W)) //Select Medium Cup.
+            if (Input.GetKeyDown(KeyCode.W) || buttonType == "Medium") //Select Medium Cup.
             {
                 currentMix.size = size.Medium;
                 sizeSelected = true;
                 Debug.Log("Medium Cup Selected (W)");
             }
 
-            if (Input.GetKeyDown(KeyCode.E)) //Select Large Cup.
+            if (Input.GetKeyDown(KeyCode.E) || buttonType == "Large") //Select Large Cup.
             {
                 currentMix.size = size.Large;
                 sizeSelected = true;
@@ -105,21 +143,21 @@ public class CoffeeMaking : MonoBehaviour
 
         if (sizeSelected == true && typeSelected == false) //Checks if size has been selected AND drink type not yet selected.
         {
-            if (Input.GetKeyDown(KeyCode.J)) //Select Cappuccinno Type.
+            if (Input.GetKeyDown(KeyCode.J) || buttonType == "Cappuccino") //Select Cappuccinno Type.
             {
                 currentMix.type = type.Cappuccino;
                 typeSelected = true;
                 Debug.Log("Cappuccino Selected (J)");
             }
 
-            if (Input.GetKeyDown(KeyCode.K)) //Select Latte Type.
+            if (Input.GetKeyDown(KeyCode.K) || buttonType == "Latte") //Select Latte Type.
             {
                 currentMix.type = type.Latte;
                 typeSelected = true;
                 Debug.Log("Latte Selected (K)");
             }
 
-            if (Input.GetKeyDown(KeyCode.L)) //Select Mocha Type.
+            if (Input.GetKeyDown(KeyCode.L) || buttonType == "Mocha") //Select Mocha Type.
             {
                 currentMix.type = type.Mocha;
                 typeSelected = true;
@@ -129,7 +167,7 @@ public class CoffeeMaking : MonoBehaviour
 
         if (sizeSelected == true && typeSelected == true) //Checks if size, drink type have been selected.
         {
-            if (Input.GetKeyDown(KeyCode.S))
+            if (Input.GetKeyDown(KeyCode.S) || buttonType == "Sugar")
             {
                 sugar++;
                 Debug.Log("Sugar: " + sugar);
@@ -138,22 +176,28 @@ public class CoffeeMaking : MonoBehaviour
 
         if (sizeSelected == true && typeSelected == true) //Checks if size, drink type have been selected.
         {
-            if (Input.GetKeyDown(KeyCode.C))
+            if (Input.GetKeyDown(KeyCode.C) || buttonType == "Coffee")
             {
                 coffee++;
                 Debug.Log("Shots of Coffee: " + coffee);
             }
         }
 
-        if (Input.GetKeyDown(KeyCode.Return))
+        if (Input.GetKeyDown(KeyCode.Return) || buttonType == "Complete")
         {
             CoffeeMix(); SugarMix();
 
-            string debug = "Order: ";
+            string debug = "Order Completed: ";
 
             debug += CompareOrder();
 
             Debug.Log(debug);
+            completedOrder = debug;
+            UpdateInputText();
+            orderText1.text = null;
+            orderText2.text = null;
+            orderText3.text = null;
+            orderText4.text = null;
             currentMix = new Drink();
             coffee = 0;
             sugar = 0;
