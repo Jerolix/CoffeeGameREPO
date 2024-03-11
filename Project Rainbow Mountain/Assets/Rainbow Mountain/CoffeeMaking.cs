@@ -150,18 +150,18 @@ public class CoffeeMaking : MonoBehaviour
                 Debug.Log("Cappuccino Selected (J)");
             }
 
-            if (Input.GetKeyDown(KeyCode.K) || buttonType == "Latte") //Select Latte Type.
+            if (Input.GetKeyDown(KeyCode.L) || buttonType == "Latte") //Select Latte Type.
             {
                 currentMix.type = type.Latte;
                 typeSelected = true;
-                Debug.Log("Latte Selected (K)");
+                Debug.Log("Latte Selected (L)");
             }
 
-            if (Input.GetKeyDown(KeyCode.L) || buttonType == "Mocha") //Select Mocha Type.
+            if (Input.GetKeyDown(KeyCode.K) || buttonType == "Mocha") //Select Mocha Type.
             {
                 currentMix.type = type.Mocha;
                 typeSelected = true;
-                Debug.Log("Mocha Selected (L)");
+                Debug.Log("Mocha Selected (K)");
             }
         }
 
