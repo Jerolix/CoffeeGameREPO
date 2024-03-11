@@ -879,7 +879,7 @@ RectTransform:
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_AnchorMin: {x: 0, y: 1}
   m_AnchorMax: {x: 0, y: 1}
-  m_AnchoredPosition: {x: 390, y: -75}
+  m_AnchoredPosition: {x: 390, y: -66}
   m_SizeDelta: {x: 200, y: 50}
   m_Pivot: {x: 0.5, y: 0.5}
 --- !u!114 &383470585
@@ -2655,9 +2655,9 @@ RectTransform:
   m_Father: {fileID: 1618328549}
   m_RootOrder: 0
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
-  m_AnchorMin: {x: 0.5, y: 0.5}
-  m_AnchorMax: {x: 0.5, y: 0.5}
-  m_AnchoredPosition: {x: -795, y: 551}
+  m_AnchorMin: {x: 0, y: 1}
+  m_AnchorMax: {x: 0, y: 1}
+  m_AnchoredPosition: {x: 165, y: -66}
   m_SizeDelta: {x: 200, y: 50}
   m_Pivot: {x: 0.5, y: 0.5}
 --- !u!114 &1038430817
@@ -3718,10 +3718,10 @@ RectTransform:
   m_Father: {fileID: 1618328549}
   m_RootOrder: 13
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
-  m_AnchorMin: {x: 0, y: 1}
-  m_AnchorMax: {x: 0, y: 1}
-  m_AnchoredPosition: {x: 344, y: -972}
-  m_SizeDelta: {x: 188.45886, y: 168.73712}
+  m_AnchorMin: {x: 0, y: 0}
+  m_AnchorMax: {x: 0, y: 0}
+  m_AnchoredPosition: {x: 344, y: 278}
+  m_SizeDelta: {x: 188.45886, y: 168.73706}
   m_Pivot: {x: 0.5, y: 0.5}
 --- !u!114 &1674247331
 MonoBehaviour:
@@ -3850,10 +3850,10 @@ RectTransform:
   m_Father: {fileID: 1618328549}
   m_RootOrder: 16
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
-  m_AnchorMin: {x: 0.5, y: 0.5}
-  m_AnchorMax: {x: 0.5, y: 0.5}
-  m_AnchoredPosition: {x: -718, y: -519}
-  m_SizeDelta: {x: 373.7208, y: 85.8187}
+  m_AnchorMin: {x: 0, y: 0}
+  m_AnchorMax: {x: 0, y: 0}
+  m_AnchoredPosition: {x: 242, y: 98}
+  m_SizeDelta: {x: 373.72083, y: 85.818726}
   m_Pivot: {x: 0.5, y: 0.5}
 --- !u!114 &1680901445
 MonoBehaviour:
@@ -4205,7 +4205,7 @@ MonoBehaviour:
   orderText2: {fileID: 290837366}
   orderText3: {fileID: 1138773402}
   orderText4: {fileID: 776207289}
-  timeBetweenOrders: 6
+  timeBetweenOrders: 5
   recipes:
   - name: Small Mocha 2 Coffee 2 Sugar
     size: 0
@@ -4217,11 +4217,11 @@ MonoBehaviour:
     type: 0
     shots: 2
     sugar: 3
-  - name: Medium Latte 1 Coffee 2 Sugar
+  - name: Medium Latte 1 Coffee 0 Sugar
     size: 1
     type: 1
     shots: 1
-    sugar: 2
+    sugar: 0
   - name: Medium Cappuccinno 2 Coffee 1 Sugar
     size: 1
     type: 0
@@ -4232,6 +4232,116 @@ MonoBehaviour:
     type: 0
     shots: 1
     sugar: 2
+  - name: Medium Mocha 3 Coffee 2 Sugar
+    size: 1
+    type: 2
+    shots: 3
+    sugar: 2
+  - name: Large Mocha 3 Coffee 1 Sugar
+    size: 2
+    type: 2
+    shots: 3
+    sugar: 1
+  - name: Small Latte 2 Coffee 0 Sugar
+    size: 0
+    type: 1
+    shots: 2
+    sugar: 0
+  - name: Small Latte 1 Coffee 3 Sugar
+    size: 0
+    type: 1
+    shots: 1
+    sugar: 3
+  - name: Small Latte 2 Coffee 2 Sugar
+    size: 0
+    type: 1
+    shots: 2
+    sugar: 2
+  - name: Small Mocha 1 Coffee 2 Sugar
+    size: 0
+    type: 2
+    shots: 1
+    sugar: 2
+  - name: Small Mocha 3 Coffee 3 Sugar
+    size: 0
+    type: 2
+    shots: 3
+    sugar: 3
+  - name: Medium Mocha 2 Coffee 1 Sugar
+    size: 1
+    type: 2
+    shots: 2
+    sugar: 1
+  - name: Medium Mocha 2 Coffee 3 Sugar
+    size: 1
+    type: 2
+    shots: 2
+    sugar: 3
+  - name: Large Mocha 3 Coffee 1 Sugar
+    size: 2
+    type: 2
+    shots: 3
+    sugar: 1
+  - name: Large Mocha 2 Coffee 2 Sugar
+    size: 2
+    type: 2
+    shots: 2
+    sugar: 2
+  - name: Medium Latte 2 Coffee 1 Sugar
+    size: 1
+    type: 1
+    shots: 2
+    sugar: 1
+  - name: Medium Latte 3 Coffee 2 Sugar
+    size: 1
+    type: 1
+    shots: 3
+    sugar: 2
+  - name: Large Latte 3 Coffee 3 Sugar
+    size: 2
+    type: 1
+    shots: 3
+    sugar: 3
+  - name: Large Latte 3 Coffee 2 Sugar
+    size: 2
+    type: 1
+    shots: 3
+    sugar: 2
+  - name: Large Latte 2 Coffee 2 Sugar
+    size: 2
+    type: 1
+    shots: 2
+    sugar: 2
+  - name: Small Cappuccino 1 Coffee 1 Sugar
+    size: 0
+    type: 0
+    shots: 1
+    sugar: 1
+  - name: Small Cappuccino 1 Coffee 3 Sugar
+    size: 0
+    type: 0
+    shots: 1
+    sugar: 3
+  - name: Medium Cappuccino 2 Coffee 0 Sugar
+    size: 1
+    type: 0
+    shots: 2
+    sugar: 0
+  - name: Medium Cappuccino 2 Coffee 3 Sugar
+    size: 1
+    type: 0
+    shots: 2
+    sugar: 3
+  - name: Large Cappuccino 3 Coffee 1 Sugar
+    size: 2
+    type: 0
+    shots: 3
+    sugar: 1
+  - name: Large Cappuccino 2 Coffee 0 Sugar
+    size: 2
+    type: 0
+    shots: 2
+    sugar: 0
   scoreManager: {fileID: 287865314}
 --- !u!4 &1883023123
 Transform:

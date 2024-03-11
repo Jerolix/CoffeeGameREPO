@@ -89,7 +89,7 @@ public class CoffeeMaking : MonoBehaviour
 
     private string CompareOrder()
     {
-        string result = "invalid";
+        string result = "Invalid - Doesn't Match an Order!";
 
         for (int i = 0; i <= orders.Count - 1; i++)
         {
